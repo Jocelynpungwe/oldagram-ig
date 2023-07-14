@@ -1,32 +1,4 @@
-const posts = [
-    {
-        name: "Vincent van Gogh",
-        username: "vincey1853",
-        location: "Zundert, Netherlands",
-        avatar: "images/avatar-vangogh.jpg",
-        post: "images/post-vangogh.jpg",
-        comment: "just took a few mushrooms lol",
-        likes: 21
-    },
-    {
-        name: "Gustave Courbet",
-        username: "gus1819",
-        location: "Ornans, France",
-        avatar: "images/avatar-courbet.jpg",
-        post: "images/post-courbet.jpg",
-        comment: "i'm feelin a bit stressed tbh",
-        likes: 4
-    },
-        {
-        name: "Joseph Ducreux",
-        username: "jd1735",
-        location: "Paris, France",
-        avatar: "images/avatar-ducreux.jpg",
-        post: "images/post-ducreux.jpg",
-        comment: "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
-        likes: 152
-    }
-]
+import {posts} from '/data.js'
 
 const avatarImg = document.getElementById("avatar-pic");
 const nameUser = document.querySelector("h2");
@@ -36,21 +8,19 @@ const likes = document.querySelector("h4");
 const comment = document.querySelector("p");
 const likebtn = document.querySelector(".heart-icon");
 const btnPost = document.getElementById("btn-post");
+const likesIcon = document.getElementById('heart-icon')
 
 let i = 0;
 let likesCount = posts[i].likes;
+let isLiked = true;
 
 
 likebtn.addEventListener("click", function(){
-    likesCount+=1;
-    likes.textContent = likesCount + " likes";
-
+liked()
     
 })
 postImg.addEventListener("dblclick",function(){
-    likesCount+=1;
-    likes.textContent = likesCount + " likes";
-    
+  liked()  
 })
 
 btnPost.addEventListener("click",function(){
@@ -62,7 +32,6 @@ if(i===3)
 {
     i=0;
 }
-
 
 })
 
@@ -77,3 +46,22 @@ comment.innerHTML = `<span class="username-El">${posts[i].username}</span>` + " 
 
 likesCount = posts[i].likes;   
 }
+
+function liked(){
+        if(isLiked){
+    likesCount+=1;
+    likes.textContent = likesCount + " likes";
+    isLiked = false
+    likesIcon.style.color = 'red'
+    
+    }
+    else if(isLiked==false)
+    {
+        likesCount-=1
+        likes.textContent = likesCount + " likes"
+        isLiked = true
+        likesIcon.style.color = 'black'
+    }
+    
+}
+
